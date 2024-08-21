@@ -9,9 +9,10 @@ string botToken = "7428476943:AAFVt59UcYCM3lWAyj6F8CuC6SfSV1VGs20";
 using NpgsqlConnection connection = new(@"Host=localhost;Port=5432;Database=telegram-bot;Username=postgres;Password=1;");
 //TelegramBotClient bot = new(botToken);
 using Bot bot = new(botToken, apiId, apiHash, connection);
-List<Message> messages = await bot.GetMessagesById("@DRBTSolana", Enumerable.Range(400000, 10));
+ChatFullInfo chat = await bot.GetChat("@DRBTSolana");
+List<Message> messages = await bot.GetMessagesById("@DRBTSolana", Enumerable.Range(495986, 10));
 Console.WriteLine($"I fetched {messages.Count} messages from @DRBTSolana:");
 foreach (Message m in messages)
 {
-    Console.WriteLine($"  {m.MessageId}: {m.Type}");
+    Console.WriteLine($"  {m.MessageId}: {m.Type} {m.Text}");
 }
