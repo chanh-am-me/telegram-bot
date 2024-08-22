@@ -10,9 +10,9 @@ using NpgsqlConnection connection = new(@"Host=localhost;Port=5432;Database=tele
 //TelegramBotClient bot = new(botToken);
 using Bot bot = new(botToken, apiId, apiHash, connection);
 ChatFullInfo chat = await bot.GetChat("@DRBTSolana");
-List<Message> messages = await bot.GetMessagesById("@DRBTSolana", Enumerable.Range(495986, 10));
+List<Message> messages = await bot.GetMessagesById("@DRBTSolana", Enumerable.Range(495990, 10));
 Console.WriteLine($"I fetched {messages.Count} messages from @DRBTSolana:");
 foreach (Message m in messages)
 {
-    Console.WriteLine($"  {m.MessageId}: {m.Type} {m.Text}");
+    await bot.ForwardMessage("-4522845690", "@DRBTSolana", m.MessageId, m.MessageId);
 }
